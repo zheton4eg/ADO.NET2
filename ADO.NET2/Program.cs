@@ -14,6 +14,7 @@ namespace ADO.NET2
     {
         static void Main(string[] args)
         {
+#if INTRO
             //1)
             const int PADDING = 30;
             const string CONNECTION_STRING = "Data Source=(localdb)\\MSSQLLocalDB;" +
@@ -34,18 +35,18 @@ namespace ADO.NET2
             SqlCommand command = new SqlCommand(cmd, connection);
 
             //4) 
-           connection.Open();
+            connection.Open();
 
             SqlDataReader reader = command.ExecuteReader();
 
 
             //5
-            if(reader.HasRows)
+            if (reader.HasRows)
             {
                 Console.WriteLine("====================================================================================================");
                 for (int i = 0; i < reader.FieldCount; i++)
-                Console.Write(reader.GetName(i).PadRight(PADDING));
-                    Console.WriteLine();
+                    Console.Write(reader.GetName(i).PadRight(PADDING));
+                Console.WriteLine();
                 Console.WriteLine("====================================================================================================");
 
                 while (reader.Read())
@@ -55,13 +56,19 @@ namespace ADO.NET2
                     {
                         Console.Write(reader[i].ToString().PadRight(PADDING));
                     }
-                    Console.WriteLine();    
+                    Console.WriteLine();
                 }
             }
             //6)
             reader.Close();
-            connection.Close();
+            connection.Close(); 
+#endif
+            //Connector.Select("*","Directors");
+            //.Select("title,release_date,FORMATMESSAGE(N'%s %s', first_name,last_name)","Movies,Directors","director=director_id");
 
+            Connector.InsertDirector("George","Martin");
+            Connector.SelectDirectors();
+            Connector.SelectMovies();
         }
     }
 }
