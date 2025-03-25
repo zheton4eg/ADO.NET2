@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -15,6 +16,13 @@ namespace Academy
         public main()
         {
             InitializeComponent();
+
+            Connector connector = new Connector
+                (
+                 ConfigurationManager.ConnectionStrings["PV_319_IMPORT"].ConnectionString
+                );
+            //dgv - DataGridView
+            dgvStudents.DataSource = connector.Select("*","Students");
         }
     }
 }
