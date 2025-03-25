@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Security.Claims;
 using System.Configuration;
+using System.Management;
+
 
 namespace ADO.NET2
 {
@@ -16,13 +18,14 @@ namespace ADO.NET2
         {
             //1)
             const int PADDING = 30;
-            const string CONNECTION_STRING = "Data Source=(localdb)\\MSSQLLocalDB;" +
-                                             "Initial Catalog=Movies;" +
-                                              "Integrated Security=True;" +
-                                              "Connect Timeout=30;Encrypt=False;" +
-                                                "TrustServerCertificate=False;" +
-                                                "ApplicationIntent=ReadWrite;" +
-                                                "MultiSubnetFailover=False";
+            //const string CONNECTION_STRING = "Data Source=(localdb)\\MSSQLLocalDB;" +
+            //                                 "Initial Catalog=Movies;" +
+            //                                  "Integrated Security=True;" +
+            //                                  "Connect Timeout=30;Encrypt=False;" +
+            //                                    "TrustServerCertificate=False;" +
+            //                                    "ApplicationIntent=ReadWrite;" +
+            //                                    "MultiSubnetFailover=False";
+            string CONNECTION_STRING = ConfigurationManager.ConnectionStrings["Movies"].ConnectionString;
             Console.WriteLine(CONNECTION_STRING);
 
             //2)
