@@ -10,7 +10,7 @@ namespace ExternalBase
     {
         static void Main(string[] args)
         {
-
+            Connector.Select("*","Disciplines");
         }
     }
 }
