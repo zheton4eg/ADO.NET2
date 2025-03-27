@@ -1,4 +1,5 @@
-﻿using System;
+﻿//#define OLD
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,8 @@ namespace Academy
 
         public Connector(string connection_string)
         {
-            CONECTION_STRING = ConfigurationManager.ConnectionStrings["PV_319_IMPORT"].ConnectionString;        
+            //CONECTION_STRING = ConfigurationManager.ConnectionStrings["PV_319_IMPORT"].ConnectionString;
+            CONECTION_STRING = connection_string;
             connection = new SqlConnection(CONECTION_STRING);
             AllocConsole();
             Console.WriteLine(connection_string);
@@ -30,35 +32,43 @@ namespace Academy
         }
         public DataTable Select(string columns, string tables, string condition="")
         {
+
             DataTable table = null;
             string cmd = $"SELECT {columns} FROM {tables}";
             if (condition != "") cmd += $" WHERE {condition}";
             cmd += ";";
-            SqlCommand command = new SqlCommand(cmd,connection);
+            SqlCommand command = new SqlCommand(cmd, connection);
             connection.Open();
-            SqlDataReader reader = command.ExecuteReader(); 
+            SqlDataReader reader = command.ExecuteReader();
 
-            if(reader.HasRows)
+            if (reader.HasRows)
             {
                 table = new DataTable();
+                table.Load(reader);
+#if OLD
+                table = new DataTable();
 
-                for(int i =0;i<reader.FieldCount;i++)
+                for (int i = 0; i < reader.FieldCount; i++)
                 {
                     table.Columns.Add();
                 }
-                while(reader.Read())
+                while (reader.Read())
                 {
                     DataRow row = table.NewRow();
-                    for(int i=0;i<reader.FieldCount;i++)
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
                         row[i] = reader[i];
                     }
                     table.Rows.Add(row);
                 }
+#endif
             }
+
             reader.Close();
             connection.Close();
-            return table;
+            return table; 
+
+
         }
         [DllImport("kernel32.dll")]
         public static extern bool AllocConsole();
