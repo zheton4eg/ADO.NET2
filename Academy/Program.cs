@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Academy
 {
-    internal static class Program
+     static class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -16,7 +16,7 @@ namespace Academy
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new main());
+            Application.Run(new Main());
         }
     }
 }
