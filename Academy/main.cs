@@ -22,7 +22,7 @@ namespace Academy
 
             connector = new Connector
                 (
-                    ConfigurationManager.ConnectionStrings["PV_319_IMPORT"].ConnectionString
+                    ConfigurationManager.ConnectionStrings["PV_319_Import"].ConnectionString
                 );
             //dgv - DataGridView
             dgvStudents.DataSource = connector.Select
@@ -59,12 +59,12 @@ namespace Academy
                     break;
                 case 2:
                     //dgvDirections.DataSource = connector.Select
-                    //    (
-                    //    "direction_name,COUNT(DISTINCT group_id) AS N'Количество групп' , COUNT(stud_id) AS N'Количество студентов'",
-                    //    "Students,Groups,Directions",
-                    //    "[group]=group_id AND direction=direction_id",
-                    //    "direction_name"
-                    //    );
+                    //	(
+                    //	"direction_name,COUNT(DISTINCT group_id) AS N'Количество групп' , COUNT(stud_id) AS N'Количество студентов'", 
+                    //	"Students,Groups,Directions",
+                    //	"[group]=group_id AND direction=direction_id",
+                    //	"direction_name"
+                    //	);
                     dgvDirections.DataSource = connector.Select
                         (
                         "direction_name,COUNT(DISTINCT group_id) AS N'Количество групп' , COUNT(stud_id) AS N'Количество студентов'",
