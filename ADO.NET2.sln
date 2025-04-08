@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.NET2", "ADO.NET2\ADO.NE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalBase", "ExternalBase\ExternalBase.csproj", "{8E7329ED-BED6-4534-B167-91939302ED91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academy", "Academy\Academy.csproj", "{C6AB4765-9B10-47F4-846C-5E1EFED27DB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academy", "Academy\Academy.csproj", "{BE717978-C494-4312-8B03-9521B7FA6D08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{8E7329ED-BED6-4534-B167-91939302ED91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E7329ED-BED6-4534-B167-91939302ED91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E7329ED-BED6-4534-B167-91939302ED91}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6AB4765-9B10-47F4-846C-5E1EFED27DB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6AB4765-9B10-47F4-846C-5E1EFED27DB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6AB4765-9B10-47F4-846C-5E1EFED27DB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6AB4765-9B10-47F4-846C-5E1EFED27DB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE717978-C494-4312-8B03-9521B7FA6D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE717978-C494-4312-8B03-9521B7FA6D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE717978-C494-4312-8B03-9521B7FA6D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE717978-C494-4312-8B03-9521B7FA6D08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
