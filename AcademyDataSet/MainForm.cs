@@ -7,12 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using System.Runtime.InteropServices;
-
 using System.Data.SqlClient;
 using System.Configuration;
-
 namespace AcademyDataSet
 {
 	public partial class MainForm : Form
@@ -25,7 +22,7 @@ namespace AcademyDataSet
 		{
 			InitializeComponent();
 			AllocConsole();
-			CONNECTION_STRING = ConfigurationManager.ConnectionStrings["PV_319_Import"].ConnectionString;
+			CONNECTION_STRING = ConfigurationManager.ConnectionStrings["PV_319_IMPORT"].ConnectionString;
 			connection = new SqlConnection(CONNECTION_STRING);
 			Console.WriteLine(CONNECTION_STRING);
 
@@ -58,10 +55,7 @@ namespace AcademyDataSet
 			string[] tables = this.tables.ToArray();
 			for (int i = 0; i < tables.Length; i++)
 			{
-				///////////////////////////////////////////////////////////////
-				//						* ???
-				//string cmd = $"SELECT * FROM {tables[i].Split(',')[0]}";
-				///////////////////////////////////////////////////////////////
+				string cmd = $"SELECT * FROM {tables[i].Split(',')[0]}";
 				SqlDataAdapter adapter = new SqlDataAdapter(cmd, connection);
 				adapter.Fill(GroupsRelatedData.Tables[tables[i].Split(',')[0]]);
 			}
@@ -71,7 +65,6 @@ namespace AcademyDataSet
 			Console.WriteLine(nameof(GroupsRelatedData));
 			//1) Создаем 'DataSet':
 			//Перенесли в конструктор.
-
 			//2) Добавляем талицы в 'DataSet':
 			const string dsTable_Directions = "Directions";
 			const string dst_col_direction_id = "direction_id";
@@ -81,7 +74,6 @@ namespace AcademyDataSet
 			GroupsRelatedData.Tables[dsTable_Directions].Columns.Add(dst_col_direction_name, typeof(string));
 			GroupsRelatedData.Tables[dsTable_Directions].PrimaryKey =
 				new DataColumn[] { GroupsRelatedData.Tables[dsTable_Directions].Columns[dst_col_direction_id] };
-
 			const string dsTable_Groups = "Groups";
 			const string dst_Groups_col_group_id = "group_id";
 			const string dst_Groups_col_group_name = "group_name";
@@ -92,7 +84,6 @@ namespace AcademyDataSet
 			GroupsRelatedData.Tables[dsTable_Groups].Columns.Add(dst_Groups_col_direction, typeof(byte));
 			GroupsRelatedData.Tables[dsTable_Groups].PrimaryKey =
 				new DataColumn[] { GroupsRelatedData.Tables[dsTable_Groups].Columns[dst_Groups_col_group_id] };
-
 			//3) Строим связи между таблицами:
 			string dsRelation_GroupsDirections = "GroupsDirections";
 			GroupsRelatedData.Relations.Add
@@ -101,7 +92,6 @@ namespace AcademyDataSet
 				GroupsRelatedData.Tables["Directions"].Columns["direction_id"], //Parent field (Primary key)
 				GroupsRelatedData.Tables["Groups"].Columns["direction"]         //Child field  (Foreign key)
 				);
-
 			//4) Загружаем данные в таблицы:
 			string directions_cmd = "SELECT * FROM Directions";
 			string groups_cmd = "SELECT * FROM Groups";
@@ -188,33 +178,7 @@ $"{row[dst_Groups_col_group_id]}\t{row[dst_Groups_col_group_name]}\t{row.GetPare
 		{
 			AddTable("Directions", "direction_id,direction_name");
 			AddTable("Groups", "group_id,group_name,direction");
-			////////////////////////////////////////////////////////////////////////////////////////////////
-			////////////////////////////////////////////////////////////////////////////////////////////////
-			////////////////////////////////////////////////////////////////////////////////////////////////
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			AddTable("Students", "stud_id,last_name,first_name,middle_name,birth_date,group");	
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!никогда не берите названия полей в квадратные скобки!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			////////////////////////////////////////////////////////////////////////////////////////////////
-			////////////////////////////////////////////////////////////////////////////////////////////////
-			////////////////////////////////////////////////////////////////////////////////////////////////
 			AddRelation("GroupsDirections", "Groups,direction", "Directions,direction_id");
 			AddRelation("StudentsGroups", "Students,group", "Groups,group_id");
 			Load();
