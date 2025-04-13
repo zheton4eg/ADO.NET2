@@ -22,7 +22,7 @@ namespace Academy
 
             connector = new Connector
                 (
-                    ConfigurationManager.ConnectionStrings["PV_319_Import"].ConnectionString
+                    ConfigurationManager.ConnectionStrings["PV_319_IMPORT"].ConnectionString
                 );
             //dgv - DataGridView
             dgvStudents.DataSource = connector.Select
