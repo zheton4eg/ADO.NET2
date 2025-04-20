@@ -14,11 +14,11 @@ namespace Academy
 {
 	class Connector
 	{
-		readonly string CONNECTION_STRING;// = ConfigurationManager.ConnectionStrings["PV_319_Import"].ConnectionString;
+		readonly string CONNECTION_STRING;// = ConfigurationManager.ConnectionStrings["PV_319_IMPORT"].ConnectionString;
 		SqlConnection connection;
 		public Connector(string connection_string)
 		{
-			//CONNECTION_STRING = ConfigurationManager.ConnectionStrings["PV_319_Import"].ConnectionString;
+			//CONNECTION_STRING = ConfigurationManager.ConnectionStrings["PV_319_IMPORT"].ConnectionString;
 			CONNECTION_STRING = connection_string;
 			connection = new SqlConnection(CONNECTION_STRING);
 			AllocConsole();
