@@ -251,7 +251,7 @@ namespace Academy
 		}
 		void GetDependentData(ComboBox dependent, ComboBox determinant)
 		{
-			Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+			Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 			Console.WriteLine(dependent.Name + "\t" + determinant.Name);
 			string dependent_root =
 				dependent.Name.Substring(Array.FindLastIndex<char>(dependent.Name.ToCharArray(), Char.IsUpper));
@@ -277,7 +277,7 @@ namespace Academy
 
 			Console.WriteLine("Dependent:  \t" + dependent_root);
 			Console.WriteLine("Determinant:\t" + determinant_root);
-			Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+			Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 		}
 	}
 }
